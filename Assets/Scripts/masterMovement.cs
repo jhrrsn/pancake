@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class movement : MonoBehaviour {
+public class masterMovement : MonoBehaviour {
 	
 	public float maxSpeed = 0f;
 	private float moveX = 0f;
@@ -41,7 +41,7 @@ public class movement : MonoBehaviour {
 			speed = 0;
 		}
 			
-		transform.Translate(moveX*speed, moveY*speed, 0);
+		transform.Translate(moveX * speed, moveY * speed, 0);
 			
 	}
 }
