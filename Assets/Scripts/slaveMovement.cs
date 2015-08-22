@@ -5,12 +5,10 @@ public class slaveMovement : MonoBehaviour {
 	
 	private float offsetX = 0;
 	private float offsetY = 0;
-	private Vector3 offset;
-		
+	private Vector3 offset;		
 	private bool isFollowing;
 	
 	public masterMovement master;
-	Transform position;
 			
 	// Use this for initialization
 	void Start () {
