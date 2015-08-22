@@ -6,6 +6,7 @@ public class SettlementGeneration : MonoBehaviour {
 
 	public int roadLength;
 	public GameObject[] buildingObjects;
+	public GameObject road;
 	public int[] buildingSizes;
 	public int buildingSpacerSize;
 	public int buildingGapSize;
@@ -15,20 +16,29 @@ public class SettlementGeneration : MonoBehaviour {
 	[Range (10, 90)]
 	public float buildingDensity;
 	
-//	private List<int> rightBuildings = new List<int>();
 
-	void Start () {
+//	void Start () {
+//		SpawnBuildings ();
+//	}
+
+	void SpawnBuildings () {
 		InstantiateBuildings (GenerateRowBuildings (), true);
 		InstantiateBuildings (GenerateRowBuildings (), false);
-//		transform.rotation = Quaternion.Euler(0, 0, roadRotation);
-		transform.Rotate(0, 0, roadRotation, Space.Self);
-//		transform.RotateAround (transform.position, Vector3.forward, roadRotation);
-	}
 
-	void Update() {
-		if (Input.GetMouseButtonDown(0)) {
-			Application.LoadLevel(Application.loadedLevel);
-		}
+		GameObject newRoad = (GameObject) Instantiate(road, transform.position, transform.rotation);
+		Vector3 roadSize = newRoad.transform.localScale;
+		roadSize.x = roadLength * 1.2f;
+		newRoad.transform.localScale = roadSize;
+
+//		Vector2 roadPositon = newRoad.transform.position;
+//		roadPositon.x += roadLength / 2f;
+//		newRoad.transform.position = roadPositon;
+
+		newRoad.transform.parent = this.transform;
+
+		transform.Rotate(0, 0, roadRotation);
+//		transform.RotateAround(
+		
 	}
 
 	List<int> GenerateRowBuildings () {
@@ -71,6 +81,7 @@ public class SettlementGeneration : MonoBehaviour {
 
 	void InstantiateBuildings(List<int> buildingList, bool sideA) {
 		Vector2 cursorPosition = transform.position;
+		cursorPosition.x -= roadLength / 2f;
 
 		foreach (int b in buildingList) {
 			if (b < 99) {
@@ -99,5 +110,13 @@ public class SettlementGeneration : MonoBehaviour {
 				cursorPosition = newCursor;
 			}
 		}
+	}
+
+	void SetSettlementRotation (float rot) {
+		roadRotation = rot;
+	}
+
+	void SetSettlementSize (int size) {
+		roadLength = size;
 	}
 }
