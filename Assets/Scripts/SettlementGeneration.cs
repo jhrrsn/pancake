@@ -20,7 +20,9 @@ public class SettlementGeneration : MonoBehaviour {
 	void Start () {
 		InstantiateBuildings (GenerateRowBuildings (), true);
 		InstantiateBuildings (GenerateRowBuildings (), false);
-		transform.rotation = Quaternion.Euler(0, 0, roadRotation);
+//		transform.rotation = Quaternion.Euler(0, 0, roadRotation);
+		transform.Rotate(0, 0, roadRotation, Space.Self);
+//		transform.RotateAround (transform.position, Vector3.forward, roadRotation);
 	}
 
 	void Update() {
@@ -81,8 +83,8 @@ public class SettlementGeneration : MonoBehaviour {
 
 				float yValue;
 
-				if (sideA) yValue = buildingSize/2.0f + roadOffset;
-				else yValue = -roadOffset - buildingSize/2.0f;
+				if (sideA) yValue = transform.position.y + buildingSize/2.0f + roadOffset;
+				else yValue = transform.position.y -roadOffset - buildingSize/2.0f;
 
 				GameObject newBuilding = (GameObject) Instantiate(buildingObjects[b], new Vector2(cursorPosition.x, yValue), transform.rotation);
 				newBuilding.transform.parent = this.transform;
