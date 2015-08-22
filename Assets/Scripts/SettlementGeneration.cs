@@ -5,8 +5,11 @@ using System.Collections.Generic;
 public class SettlementGeneration : MonoBehaviour {
 
 	public int roadLength;
+	public GameObject[] buildingObjects;
 	public int[] buildingSizes;
-	public int buildingSpaceSize;
+	public int buildingSpacerSize;
+	public int buildingGapSize;
+	public int roadOffset;
 
 	[Range (10, 90)]
 	public float buildingDensity;
@@ -15,9 +18,13 @@ public class SettlementGeneration : MonoBehaviour {
 	private float roadOrientation;
 
 	void Start () {
-		List<int> testBuildings = GenerateRowBuildings ();
-		foreach (int b in testBuildings) {
-			Debug.Log(b);
+		InstantiateBuildings (GenerateRowBuildings (), true);
+		InstantiateBuildings (GenerateRowBuildings (), false);
+	}
+
+	void Update() {
+		if (Input.GetMouseButtonDown(0)) {
+			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 
@@ -36,26 +43,57 @@ public class SettlementGeneration : MonoBehaviour {
 				// Pick one of the building sizes at random from the supplied list.
 				int building = Random.Range(0, buildingSizes.Length);
 				int buildingLength = (int) buildingSizes.GetValue(building);
-				if ((rowLength + buildingLength) > roadLength) {
+				if ((rowLength + buildingLength + buildingSpacerSize) > roadLength) {
 					break;
 				} else {
 					// Add selected building to array.
 					buildings.Add(building);
-					rowLength += buildingLength;
+					rowLength += buildingLength+buildingSpacerSize;
 					previousSpacer = false;
 				}
 			} else {
-				if ((rowLength + buildingSpaceSize) > roadLength) {
+				if ((rowLength + buildingGapSize) > roadLength) {
 					break;
 				} else {
 					// Add spacer ID (99) to array.
 					buildings.Add(99);
-					rowLength += buildingSpaceSize;
+					rowLength += buildingGapSize;
 					previousSpacer = true;
 				}
 			}
 		}
 
 		return buildings;
+	}
+
+	void InstantiateBuildings(List<int> buildingList, bool sideA) {
+		Vector2 cursorPosition = transform.position;
+
+		foreach (int b in buildingList) {
+			if (b < 99) {
+				int buildingSize = buildingSizes[b];
+
+				// Move cursor along.
+				Vector2 newCursor = cursorPosition;
+				newCursor.x += buildingSize/2.0f;
+				cursorPosition = newCursor;
+
+				float yValue;
+
+				if (sideA) yValue = buildingSize/2.0f + roadOffset;
+				else yValue = -roadOffset - buildingSize/2.0f;
+
+				Instantiate(buildingObjects[b], new Vector2(cursorPosition.x, yValue), transform.rotation);
+
+				// Move cursor along.
+				newCursor = cursorPosition;
+				newCursor.x += buildingSize/2.0f;
+				cursorPosition = newCursor;
+			} else {
+				Vector2 newCursor = cursorPosition;
+				newCursor.x += buildingGapSize;
+				cursorPosition = newCursor;
+			}
+		}
 	}
 }
