@@ -10,16 +10,17 @@ public class SettlementGeneration : MonoBehaviour {
 	public int buildingSpacerSize;
 	public int buildingGapSize;
 	public int roadOffset;
+	public float roadRotation;
 
 	[Range (10, 90)]
 	public float buildingDensity;
 	
 //	private List<int> rightBuildings = new List<int>();
-	private float roadOrientation;
 
 	void Start () {
 		InstantiateBuildings (GenerateRowBuildings (), true);
 		InstantiateBuildings (GenerateRowBuildings (), false);
+		transform.rotation = Quaternion.Euler(0, 0, roadRotation);
 	}
 
 	void Update() {
@@ -83,7 +84,8 @@ public class SettlementGeneration : MonoBehaviour {
 				if (sideA) yValue = buildingSize/2.0f + roadOffset;
 				else yValue = -roadOffset - buildingSize/2.0f;
 
-				Instantiate(buildingObjects[b], new Vector2(cursorPosition.x, yValue), transform.rotation);
+				GameObject newBuilding = (GameObject) Instantiate(buildingObjects[b], new Vector2(cursorPosition.x, yValue), transform.rotation);
+				newBuilding.transform.parent = this.transform;
 
 				// Move cursor along.
 				newCursor = cursorPosition;
