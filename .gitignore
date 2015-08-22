@@ -1,3 +1,9 @@
+.gitignore
+Assets/Sprites/Square.*
+Assets/Prefabs/test/*
+Assets/Prefabs/test.*
+Assets/_Scenes/JackTest.*
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
