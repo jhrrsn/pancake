@@ -3,12 +3,13 @@ using System.Collections;
 
 public class cameraFollow : MonoBehaviour {
 
-	public Transform target;
+
 	private float watchZ = -10f;
 	private float watchX = 10f;
 	private float watchY = 10f;
 
-	public Camera thisCamera;
+	private Transform target;
+	private Camera thisCamera;
 	public float zoomSpeed = 20f;
 	public float minZoomFOV = 1f;
 	public float maxZoomFOV = 100f;
@@ -17,7 +18,9 @@ public class cameraFollow : MonoBehaviour {
 	float camZoom;
 	
 	void Start(){
-		if(thisCamera.isOrthoGraphic){
+		thisCamera = GetComponent<Camera> ();
+		target = GameObject.Find ("AlphaWolf").GetComponent<Transform>();
+		if(thisCamera.orthographic){
 			isOrthographic = true;
 			camZoom = thisCamera.fieldOfView;
 		}else{
@@ -43,8 +46,8 @@ public class cameraFollow : MonoBehaviour {
 	
 	void LateUpdate(){
 		if(target){
-			watchX = target.GetComponent<Rigidbody>().transform.position.x;
-			watchY = target.GetComponent<Rigidbody>().transform.position.y;
+			watchX = target.transform.position.x;
+			watchY = target.transform.position.y;
 			transform.position = new Vector3(watchX, watchY, watchZ);
 		}
 	}
