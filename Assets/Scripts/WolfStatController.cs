@@ -20,7 +20,6 @@ public class WolfStatController : MonoBehaviour {
 
 	void OnCollisionStay2D (Collision2D coll) {
 		if (Time.time > nextBite && coll.gameObject.tag == "villager") {
-			Debug.Log("ATTACK!");
 			bool killedIt = coll.gameObject.GetComponent<VillagerBehaviour> ().Attacked(power);
 			if (killedIt) {
 				LevelUp ();
