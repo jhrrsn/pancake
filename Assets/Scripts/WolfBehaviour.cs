@@ -32,12 +32,16 @@ public class WolfBehaviour : MonoBehaviour {
 	private Transform villager;
 	private Rigidbody2D targetRb;
 	private SpriteRenderer spriteR;
+	private WolfStatController stats;
+	private WolfpackStrengthController wpsController;
 
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		spriteR = GetComponent<SpriteRenderer> ();
 		target = GameObject.Find ("AlphaWolf").GetComponent<Transform>();
 		targetRb = target.GetComponent<Rigidbody2D> ();
+		stats = GetComponent<WolfStatController> ();
+		wpsController = GameObject.Find("GameController").GetComponent<WolfpackStrengthController> ();
 		noiseOffset = Random.value * 10.0f;
 		active = false;
 		pursuing = false;
@@ -52,6 +56,7 @@ public class WolfBehaviour : MonoBehaviour {
 			spriteR.color = new Color(1f, 0f, 0f);
 		} else if (!active && targetDistance <= activeDistance) {
 			active = true;
+			wpsController.IncreaseStrength (stats.GetPower());
 			spriteR.color = new Color(0f, 1f, 0f);
 		}
 

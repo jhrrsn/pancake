@@ -9,6 +9,7 @@ public class WolfStatController : MonoBehaviour {
 	private int power;
 	private int health;
 	private float nextBite;
+	private WolfpackStrengthController wpsController;
 
 	void Start () {
 		power = startingPower;
@@ -16,6 +17,7 @@ public class WolfStatController : MonoBehaviour {
 		float size = 0.3f + 3f * (power / 100f);
 		nextBite = Time.time;
 		transform.localScale = new Vector2(size, size);
+		wpsController = GameObject.Find("GameController").GetComponent<WolfpackStrengthController> ();
 	}
 
 	void OnCollisionStay2D (Collision2D coll) {
@@ -34,5 +36,10 @@ public class WolfStatController : MonoBehaviour {
 		power += 1;
 		float size = 0.4f + 3f * (power / 100f);
 		transform.localScale = new Vector2(size, size);
+		wpsController.IncreaseStrength (1);
+	}
+
+	public int GetPower() {
+		return power;
 	}
 }
