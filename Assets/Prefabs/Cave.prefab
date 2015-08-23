@@ -11,12 +11,12 @@ GameObject:
   - 212: {fileID: 21290218}
   - 61: {fileID: 6115546}
   m_Layer: 0
-  m_Name: cave
+  m_Name: Cave
   m_TagString: cave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &122932
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +29,8 @@ GameObject:
   - 50: {fileID: 5006320}
   - 114: {fileID: 11430222}
   - 58: {fileID: 5839550}
-  m_Layer: 0
+  - 114: {fileID: 11469932}
+  m_Layer: 11
   m_Name: Wolf
   m_TagString: wolf
   m_Icon: {fileID: 0}
@@ -48,7 +49,8 @@ GameObject:
   - 50: {fileID: 5085862}
   - 114: {fileID: 11479366}
   - 58: {fileID: 5843524}
-  m_Layer: 0
+  - 114: {fileID: 11426026}
+  m_Layer: 11
   m_Name: Wolf
   m_TagString: wolf
   m_Icon: {fileID: 0}
@@ -67,7 +69,8 @@ GameObject:
   - 50: {fileID: 5055490}
   - 114: {fileID: 11469836}
   - 58: {fileID: 5825138}
-  m_Layer: 0
+  - 114: {fileID: 11407230}
+  m_Layer: 11
   m_Name: Wolf
   m_TagString: wolf
   m_Icon: {fileID: 0}
@@ -86,7 +89,8 @@ GameObject:
   - 50: {fileID: 5053322}
   - 114: {fileID: 11445046}
   - 58: {fileID: 5802480}
-  m_Layer: 0
+  - 114: {fileID: 11466546}
+  m_Layer: 11
   m_Name: Wolf
   m_TagString: wolf
   m_Icon: {fileID: 0}
@@ -99,8 +103,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104824}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: .357842594, w: .933781981}
+  m_LocalPosition: {x: 12.9925108, y: -6.56451273, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 429684}
@@ -286,6 +290,32 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .857142866, y: .857142866}
+--- !u!114 &11407230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea15a215458b4323add97fac314af43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPower: 1
+  biteDelay: 1
+--- !u!114 &11426026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea15a215458b4323add97fac314af43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPower: 1
+  biteDelay: 1
 --- !u!114 &11430222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,10 +340,10 @@ MonoBehaviour:
   targetWeight: .5
   targetDistanceMod: 5
   catchUpWeight: 1.39999998
-  pursuitDamper: 0
+  pursuitDamper: 3
   villagerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   velocityLerp: .300000012
 --- !u!114 &11445046
 MonoBehaviour:
@@ -339,11 +369,24 @@ MonoBehaviour:
   targetWeight: .5
   targetDistanceMod: 5
   catchUpWeight: 1.39999998
-  pursuitDamper: 0
+  pursuitDamper: 3
   villagerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   velocityLerp: .300000012
+--- !u!114 &11466546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea15a215458b4323add97fac314af43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPower: 1
+  biteDelay: 1
 --- !u!114 &11469836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,11 +411,24 @@ MonoBehaviour:
   targetWeight: .5
   targetDistanceMod: 5
   catchUpWeight: 1.39999998
-  pursuitDamper: 0
+  pursuitDamper: 3
   villagerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   velocityLerp: .300000012
+--- !u!114 &11469932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea15a215458b4323add97fac314af43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPower: 1
+  biteDelay: 1
 --- !u!114 &11479366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -397,10 +453,10 @@ MonoBehaviour:
   targetWeight: .5
   targetDistanceMod: 5
   catchUpWeight: 1.39999998
-  pursuitDamper: 0
+  pursuitDamper: 3
   villagerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   velocityLerp: .300000012
 --- !u!212 &21213178
 SpriteRenderer:
