@@ -3,6 +3,7 @@ Assets/Sprites/Square.*
 Assets/Prefabs/test/*
 Assets/Prefabs/test.*
 Assets/_Scenes/JackTest.*
+ProjectSetting*
 
 /[Ll]ibrary/
 /[Tt]emp/
@@ -19,6 +20,7 @@ Assets/_Scenes/JackTest.*
 *.userprefs
 *.pidb
 *.booproj
+*.meta
 
 # Unity3D generated meta files
 *.pidb.meta
