@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &107232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 402050}
+  - 114: {fileID: 11478670}
+  m_Layer: 0
+  m_Name: Settlement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402050
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11478670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6689acb71a24679a44efebf0e904ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadLength: 50
+  buildingObjects:
+  - {fileID: 104824, guid: 6d78fa89c92664a91b225e68676b8fba, type: 2}
+  - {fileID: 165552, guid: f521a5750f67b4d0cac68f7af62ecce0, type: 2}
+  - {fileID: 100376, guid: 2002fad58658846b0982cadfa3c976cd, type: 2}
+  - {fileID: 105480, guid: 927ecf07f669148e4bd022e6d26443a6, type: 2}
+  - {fileID: 151338, guid: d5399381a5c5446418a872acaa315165, type: 2}
+  road: {fileID: 190956, guid: e04f321e85090448aabb6af17eddf6e9, type: 2}
+  buildingSizes: 0300000004000000050000000600000007000000
+  buildingSpacerSize: 0
+  buildingGapSize: 6
+  roadOffset: 2
+  roadRotation: 0
+  buildingDensity: 70
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 107232}
+  m_IsPrefabParent: 1
