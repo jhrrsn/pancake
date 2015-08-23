@@ -36,7 +36,7 @@ public class WolfBehaviour : MonoBehaviour {
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
 		spriteR = GetComponent<SpriteRenderer> ();
-		target = GameObject.Find ("Alpha Wolf").GetComponent<Transform>();
+		target = GameObject.Find ("AlphaWolf").GetComponent<Transform>();
 		targetRb = target.GetComponent<Rigidbody2D> ();
 		noiseOffset = Random.value * 10.0f;
 		active = false;
