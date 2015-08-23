@@ -13,7 +13,7 @@ public class WolfStatController : MonoBehaviour {
 	void Start () {
 		power = startingPower;
 		health = power;
-		float size = 0.1f + 3f * (power / 100f);
+		float size = 0.3f + 3f * (power / 100f);
 		nextBite = Time.time;
 		transform.localScale = new Vector2(size, size);
 	}
@@ -33,7 +33,7 @@ public class WolfStatController : MonoBehaviour {
 
 	void LevelUp () {
 		power += 1;
-		float size = 0.1f + 3f * (power / 100f);
+		float size = 0.4f + 3f * (power / 100f);
 		transform.localScale = new Vector2(size, size);
 	}
 }
