@@ -53,6 +53,7 @@ public class WolfBehaviour : MonoBehaviour {
 
 		if (active && targetDistance > inactiveDistance) {
 			active = false;
+			wpsController.ReduceStrength (stats.GetPower());
 			spriteR.color = new Color(1f, 0f, 0f);
 		} else if (!active && targetDistance <= activeDistance) {
 			active = true;

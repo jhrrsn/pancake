@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class WolfpackStrengthController : MonoBehaviour {
 
-	private int wolfpackStrength;
+	public Text strengthText;
+
+	private int wolfpackStrength; 
 
 	void Start () {
 		wolfpackStrength = 1;
@@ -11,10 +14,12 @@ public class WolfpackStrengthController : MonoBehaviour {
 
 	public void IncreaseStrength(int s) {
 		wolfpackStrength += s;
+		strengthText.text = wolfpackStrength.ToString ();
 	}
 
 	public void ReduceStrength(int s) {
 		wolfpackStrength -= s;
+		strengthText.text = wolfpackStrength.ToString ();
 	}
 
 	void Update () {
