@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &122932
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +482,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ba69336a440b94c938410e614367b198, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb70b149db46043d1b1da550c4ee3fe1, type: 3}
   m_Color: {r: .448529422, g: .448529422, b: .448529422, a: 1}
 --- !u!212 &21243926
 SpriteRenderer:
@@ -508,7 +508,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ba69336a440b94c938410e614367b198, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb70b149db46043d1b1da550c4ee3fe1, type: 3}
   m_Color: {r: .448529422, g: .448529422, b: .448529422, a: 1}
 --- !u!212 &21256544
 SpriteRenderer:
@@ -534,7 +534,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ba69336a440b94c938410e614367b198, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb70b149db46043d1b1da550c4ee3fe1, type: 3}
   m_Color: {r: .448529422, g: .448529422, b: .448529422, a: 1}
 --- !u!212 &21260088
 SpriteRenderer:
@@ -560,7 +560,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ba69336a440b94c938410e614367b198, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb70b149db46043d1b1da550c4ee3fe1, type: 3}
   m_Color: {r: .448529422, g: .448529422, b: .448529422, a: 1}
 --- !u!212 &21290218
 SpriteRenderer:
@@ -586,7 +586,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4022c88dbc4214ba5b83a43cd53a2616, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 717f3a8c4b86c4d9790a05f2ede4ce97, type: 3}
   m_Color: {r: .308823526, g: .308823526, b: .308823526, a: 1}
 --- !u!1001 &100100000
 Prefab:
