@@ -5,6 +5,7 @@ public class WolfStatController : MonoBehaviour {
 
 	public int startingPower = 1;
 	public float biteDelay = 1f;
+	public float baseSize = 0.5f;
 
 	private int power;
 	private int health;
@@ -14,7 +15,7 @@ public class WolfStatController : MonoBehaviour {
 	void Start () {
 		power = startingPower;
 		health = power;
-		float size = 0.3f + 3f * (power / 100f);
+		float size = baseSize + 3f * (power / 100f);
 		nextBite = Time.time;
 		transform.localScale = new Vector2(size, size);
 		wpsController = GameObject.Find("GameController").GetComponent<WolfpackStrengthController> ();
@@ -34,7 +35,7 @@ public class WolfStatController : MonoBehaviour {
 
 	void LevelUp () {
 		power += 1;
-		float size = 0.4f + 3f * (power / 100f);
+		float size = baseSize + 3f * (power / 100f);
 		transform.localScale = new Vector2(size, size);
 		wpsController.IncreaseStrength (1);
 	}

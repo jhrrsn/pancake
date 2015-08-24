@@ -34,6 +34,8 @@ public class WolfBehaviour : MonoBehaviour {
 	private SpriteRenderer spriteR;
 	private WolfStatController stats;
 	private WolfpackStrengthController wpsController;
+	private Animator anim;
+	private bool moving;
 
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
@@ -45,6 +47,8 @@ public class WolfBehaviour : MonoBehaviour {
 		noiseOffset = Random.value * 10.0f;
 		active = false;
 		pursuing = false;
+		anim = GetComponent<Animator> ();
+		moving = false;
 		StartCoroutine("StartTick", pingFrequency);
 	}
 
@@ -54,11 +58,9 @@ public class WolfBehaviour : MonoBehaviour {
 		if (active && targetDistance > inactiveDistance) {
 			active = false;
 			wpsController.ReduceStrength (stats.GetPower());
-			spriteR.color = new Color(1f, 0f, 0f);
 		} else if (!active && targetDistance <= activeDistance) {
 			active = true;
 			wpsController.IncreaseStrength (stats.GetPower());
-			spriteR.color = new Color(0f, 1f, 0f);
 		}
 
 		if (!active && rb.velocity.sqrMagnitude > 0.1f) {
@@ -67,6 +69,15 @@ public class WolfBehaviour : MonoBehaviour {
 			rb.velocity = newVelocity;
 		} else if (!active) {
 			rb.velocity = Vector2.zero;
+		}
+
+		// Animation
+		if (!moving && rb.velocity.sqrMagnitude > 0) {
+			moving = true;
+			anim.SetBool ("moving", true);
+		} else if (moving && rb.velocity.sqrMagnitude < 3f) {
+			moving = false;
+			anim.SetBool ("moving", false);
 		}
 	}
 
@@ -191,7 +202,7 @@ public class WolfBehaviour : MonoBehaviour {
 
 	void EvaluateSeparation () {
 		float targetVelocity = targetRb.velocity.sqrMagnitude;
-		separationDistance = map (targetVelocity, 30f, 100f, 2.5f, 1.5f);
+		separationDistance = map (targetVelocity, 10f, 25f, 2.5f, 1.5f);
 	}
 
 	void StopPursuing() {

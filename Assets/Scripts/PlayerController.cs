@@ -8,13 +8,18 @@ public class PlayerController : MonoBehaviour {
 	public float mouseDeadzone;
 
 	private Rigidbody2D rb;
+	private Animator anim;
+	private bool moving;
 	
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+		anim = GetComponent<Animator> ();
+		moving = false;
 	}
 
 	void FixedUpdate() {
+		Debug.Log (rb.velocity.sqrMagnitude);
 		TestingLinesToCaves ();
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
@@ -29,8 +34,18 @@ public class PlayerController : MonoBehaviour {
 		var angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
 
 		if (Mathf.Abs (h) > 0 || Mathf.Abs (v) > 0) {
+			// If moving, set anim parameter
+			if (!moving) {
+				moving = true;
+				anim.SetBool ("moving", true);
+			}
 			Quaternion newRotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
-			transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, lerpSpeed * Time.deltaTime);
+			transform.rotation = Quaternion.Lerp (transform.rotation, newRotation, lerpSpeed * Time.deltaTime);
+		} else {
+			if (moving) {
+				moving = false;
+				anim.SetBool ("moving", false);
+			}
 		}
 	}
 
