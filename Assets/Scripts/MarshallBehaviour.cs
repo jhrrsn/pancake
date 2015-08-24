@@ -11,61 +11,70 @@ public class MarshallBehaviour : MonoBehaviour {
 	// if health is low, flee!
 
 	public float detectDistance;
-	public float runSpeed;
+	public float shootDistance;
 	public int maxHealth = 2;
 	public LayerMask wolfLayer;
-	public bool flight = true;
 	public float lerpSpeed;
-	public Color [] hairColours;
+	public AudioClip shotClip;
+	public AudioClip reloadClip;
+	public AudioClip deathClip;
+	public float shotDelay;
+	public int shotDamage;
+	public Sprite deathSprite;
 
+	private bool alive;
 	private int health;	
+	private bool reloaded;
 	private Rigidbody2D rb;
-	private Animator anim;
-	private bool running;
+	private Transform targetWolf;
+	private float nextShot;
+	private AudioSource sfx;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
-		anim = GetComponent<Animator> ();
-		GetComponent<SpriteRenderer> ().color = hairColours [Random.Range (0, hairColours.Length)];
+		sfx = GetComponent<AudioSource> ();
+		nextShot = Time.time;
+		reloaded = true;
+		alive = true;
 		health = maxHealth;
-		running = false;
-	}
-
-	void Update () {
-		// Animation
-		if (!running && rb.velocity.sqrMagnitude > 0) {
-			running = true;
-			anim.SetBool ("running", true);
-		} else if (running && rb.velocity.sqrMagnitude < 1f) {
-			running = false;
-			anim.SetBool ("running", false);
-		}
 	}
 
 	void FixedUpdate () {
-		Collider2D [] nearbyWolves = Physics2D.OverlapCircleAll(transform.position, detectDistance, wolfLayer);
+		if (alive) {
+			Collider2D [] nearbyWolves = Physics2D.OverlapCircleAll (transform.position, detectDistance, wolfLayer);
 
-		Vector2 wolfVector = Vector2.zero;
-		int wolfCount = 0;
+			if (nearbyWolves.Length > 0) {
 
-		foreach (Collider2D wolf in nearbyWolves) {
-			Transform t = wolf.transform;
-			wolfCount++;
-			wolfVector += (Vector2)t.transform.position - (Vector2)transform.position;
-		}
+				float closestDistance = Vector2.Distance (transform.position, nearbyWolves [0].transform.position);
+				targetWolf = nearbyWolves [0].transform;
 
-		wolfVector /= wolfCount;
-		wolfVector = wolfVector.normalized;
+				foreach (Collider2D wolf in nearbyWolves) {
+					float distance = Vector2.Distance (transform.position, wolf.transform.position);
+					if (distance < closestDistance) {
+						targetWolf = wolf.transform;
+					}
+				}
 
-		if (flight) {
-			// Set fleeing velocity.
-			Vector2 fleeVector = -wolfVector * runSpeed;
-			rb.velocity = Vector2.Lerp (rb.velocity, fleeVector, lerpSpeed * Time.deltaTime);
+				Vector2 wolfVector = targetWolf.transform.position - transform.position;
+				wolfVector = wolfVector.normalized;
 
-			// Set look rotation.
-			Vector2 look = rb.velocity.normalized;
-			var angle = Mathf.Atan2 (look.y, look.x) * Mathf.Rad2Deg;
-			transform.rotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
+				// Set look rotation.
+				Vector2 look = wolfVector;
+				var angle = Mathf.Atan2 (look.y, look.x) * Mathf.Rad2Deg;
+				Quaternion newRotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
+				transform.rotation = Quaternion.Lerp (transform.rotation, newRotation, lerpSpeed);
+
+				// Take a shot, if able.
+				if (Time.time > nextShot && closestDistance < shootDistance && targetWolf.name != "AlphaWolf") {
+					nextShot = Time.time + shotDelay;
+					reloaded = false;
+					targetWolf.GetComponent<WolfStatController> ().Attacked (shotDamage);
+					sfx.PlayOneShot (shotClip);
+				} else if (!reloaded && Time.time > nextShot - 2f) {
+					sfx.PlayOneShot (reloadClip);
+					reloaded = true;
+				}
+			}
 		}
 	}
 
@@ -73,6 +82,7 @@ public class MarshallBehaviour : MonoBehaviour {
 		health -= damage;
 		if (health <= 0) {
 			Die ();
+			sfx.PlayOneShot(deathClip);
 			return true;
 		} else {
 			return false;
@@ -80,6 +90,10 @@ public class MarshallBehaviour : MonoBehaviour {
 	}
 
 	void Die() {
-		Destroy (gameObject);
+		GetComponent<Collider2D> ().enabled = false;
+		SpriteRenderer spr = GetComponent<SpriteRenderer> ();
+		spr.sprite = deathSprite;
+		alive = false;
+		gameObject.tag = "dead";
 	}
 }

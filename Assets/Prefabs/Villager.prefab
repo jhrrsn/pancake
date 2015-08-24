@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11413488}
   - 50: {fileID: 5085986}
   - 95: {fileID: 9537202}
+  - 82: {fileID: 8239832}
   m_Layer: 12
   m_Name: Villager
   m_TagString: villager
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,6 +62,75 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
+--- !u!82 &8239832
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151556}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9537202
 Animator:
   serializedVersion: 3
@@ -103,6 +173,13 @@ MonoBehaviour:
   - {r: .176470578, g: .16738753, b: .16738753, a: 1}
   - {r: .985294104, g: .644937932, b: .0362240225, a: 1}
   - {r: .661764741, g: .661764741, b: .661764741, a: 1}
+  deathClip:
+  - {fileID: 8300000, guid: cdaaa6c4860444921a3e2c95992ae1ba, type: 3}
+  - {fileID: 8300000, guid: 19b032fb57a4c4545a47fa30d74f0bc6, type: 3}
+  - {fileID: 8300000, guid: 7139d95b60d7b4878b66800de337f5ed, type: 3}
+  - {fileID: 8300000, guid: 553a4b75b420443ef81319736e0249cd, type: 3}
+  deathSprite: {fileID: 21300000, guid: 53970e5d2be714730b3a9d9db93d296d, type: 3}
+  alive: 0
 --- !u!212 &21221786
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -8,7 +8,10 @@ public class WolfStatController : MonoBehaviour {
 	public float baseSize = 0.5f;
 
 	public AudioClip biteClip;
+	public AudioClip deathClip;
 	private AudioSource sfx;
+
+	public GameObject splatter;
 
 	public int power;
 	private int xp;
@@ -59,6 +62,22 @@ public class WolfStatController : MonoBehaviour {
 		float size = baseSize + 6f * (power / 100f);
 		transform.localScale = new Vector2(size, size);
 		wpsController.UpdateWolf (id, power);
+	}
+
+	public void Attacked(int damage) {
+		health -= damage;
+		if (health <= 0) {
+			Die ();
+		}
+	}
+
+	void Die () {
+		GetComponent<Collider2D> ().enabled = false;
+		GetComponent<Animator> ().enabled = false;
+		GetComponent<SpriteRenderer> ().enabled = false;
+		Instantiate (splatter, transform.position, transform.rotation);
+		sfx.PlayOneShot (deathClip);
+		Destroy (gameObject, 4f);
 	}
 
 	public int GetPower() {

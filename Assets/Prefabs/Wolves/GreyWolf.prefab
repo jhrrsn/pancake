@@ -193,6 +193,8 @@ MonoBehaviour:
   biteDelay: .5
   baseSize: .5
   biteClip: {fileID: 8300000, guid: 883ac120e1fb94fd6b3551f43cc0a3c6, type: 3}
+  deathClip: {fileID: 8300000, guid: 1c32b83f1622a47a6b5ff2e017ad6a61, type: 3}
+  splatter: {fileID: 103290, guid: c89e0c7ec3f4748c5946ec65eefa5c80, type: 2}
   power: 0
 --- !u!212 &21267204
 SpriteRenderer:
@@ -217,7 +219,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: aca00c4524ad64e4b9c2235c28c9fae4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

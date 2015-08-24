@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 		if (!moving && rb.velocity.sqrMagnitude > 0) {
 			moving = true;
 			anim.SetBool ("moving", true);
-		} else if (moving && rb.velocity.sqrMagnitude < 1f) {
+		} else if (moving && rb.velocity.sqrMagnitude < 3f) {
 			moving = false;
 			anim.SetBool ("moving", false);
 		}
