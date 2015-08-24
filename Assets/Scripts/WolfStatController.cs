@@ -8,6 +8,7 @@ public class WolfStatController : MonoBehaviour {
 	public float baseSize = 0.5f;
 
 	public int power;
+	private int xp;
 	private int health;
 	private float nextBite;
 	private WolfpackStrengthController wpsController;
@@ -18,6 +19,7 @@ public class WolfStatController : MonoBehaviour {
 		power = startingPower;
 		health = power;
 		float size = baseSize + 6f * (power / 100f);
+		xp = 0;
 		nextBite = Time.time;
 		transform.localScale = new Vector2(size, size);
 		wpsController = GameObject.Find("GameController").GetComponent<WolfpackStrengthController> ();
@@ -27,7 +29,11 @@ public class WolfStatController : MonoBehaviour {
 		if (Time.time > nextBite && coll.gameObject.tag == "villager") {
 			bool killedIt = coll.gameObject.GetComponent<VillagerBehaviour> ().Attacked(power);
 			if (killedIt) {
-				LevelUp ();
+				xp++;
+				if (xp % power == 0) {
+					LevelUp ();
+					xp = 0;
+				}
 				gameObject.BroadcastMessage("StopPursuing");
 			}
 
@@ -37,6 +43,7 @@ public class WolfStatController : MonoBehaviour {
 
 	void LevelUp () {
 		power += 1;
+		health += 1;
 		float size = baseSize + 6f * (power / 100f);
 		transform.localScale = new Vector2(size, size);
 		wpsController.UpdateWolf (id, power);
