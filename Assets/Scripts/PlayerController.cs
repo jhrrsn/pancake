@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour {
 
 	public float moveForce;
 	public float lerpSpeed;
-	public float mouseDeadzone;
 
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -16,6 +15,17 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
 		moving = false;
+	}
+
+	void Update () {
+		// Animation
+		if (!moving && rb.velocity.sqrMagnitude > 0) {
+			moving = true;
+			anim.SetBool ("moving", true);
+		} else if (moving && rb.velocity.sqrMagnitude < 1f) {
+			moving = false;
+			anim.SetBool ("moving", false);
+		}
 	}
 
 	void FixedUpdate() {
@@ -33,18 +43,8 @@ public class PlayerController : MonoBehaviour {
 		var angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
 
 		if (Mathf.Abs (h) > 0 || Mathf.Abs (v) > 0) {
-			// If moving, set anim parameter
-			if (!moving) {
-				moving = true;
-				anim.SetBool ("moving", true);
-			}
 			Quaternion newRotation = Quaternion.AngleAxis (angle - 90, Vector3.forward);
 			transform.rotation = Quaternion.Lerp (transform.rotation, newRotation, lerpSpeed * Time.deltaTime);
-		} else {
-			if (moving) {
-				moving = false;
-				anim.SetBool ("moving", false);
-			}
 		}
 	}
 
