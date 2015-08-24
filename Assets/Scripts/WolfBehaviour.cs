@@ -97,7 +97,7 @@ public class WolfBehaviour : MonoBehaviour {
 		// if there's a villager, chase him! else flock
 		Collider2D [] nearbyVillagers = new Collider2D[0];
 
-		if (!villager) {
+		if (!villager || villager.tag != "villager") {
 			pursuing = false;
 		}
 

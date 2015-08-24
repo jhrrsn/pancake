@@ -7,6 +7,9 @@ public class WolfStatController : MonoBehaviour {
 	public float biteDelay = 1f;
 	public float baseSize = 0.5f;
 
+	public AudioClip biteClip;
+	private AudioSource sfx;
+
 	public int power;
 	private int xp;
 	private int health;
@@ -22,12 +25,21 @@ public class WolfStatController : MonoBehaviour {
 		xp = 0;
 		nextBite = Time.time;
 		transform.localScale = new Vector2(size, size);
+		sfx = GetComponent<AudioSource> ();
 		wpsController = GameObject.Find("GameController").GetComponent<WolfpackStrengthController> ();
 	}
 
 	void OnCollisionStay2D (Collision2D coll) {
-		if (Time.time > nextBite && coll.gameObject.tag == "villager") {
-			bool killedIt = coll.gameObject.GetComponent<VillagerBehaviour> ().Attacked(power);
+		string colliderTag = coll.gameObject.tag;
+		if (Time.time > nextBite && (colliderTag == "villager" || colliderTag == "marshall")) {
+			sfx.pitch = Random.Range(0.9f, 1.1f);
+			sfx.PlayOneShot(biteClip);
+			bool killedIt = false;
+			if (colliderTag == "villager") {
+				killedIt = coll.gameObject.GetComponent<VillagerBehaviour> ().Attacked(power);
+			} else if (colliderTag == "marshall") {
+				killedIt = coll.gameObject.GetComponent<MarshallBehaviour> ().Attacked(power);
+			}
 			if (killedIt) {
 				xp++;
 				if (xp % power == 0) {
