@@ -31,15 +31,14 @@ public class WolfBehaviour : MonoBehaviour {
 	private Transform target;
 	private Transform villager;
 	private Rigidbody2D targetRb;
-	private SpriteRenderer spriteR;
 	private WolfStatController stats;
 	private WolfpackStrengthController wpsController;
 	private Animator anim;
 	private bool moving;
+	private int id;
 
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
-		spriteR = GetComponent<SpriteRenderer> ();
 		target = GameObject.Find ("AlphaWolf").GetComponent<Transform>();
 		targetRb = target.GetComponent<Rigidbody2D> ();
 		stats = GetComponent<WolfStatController> ();
@@ -49,26 +48,20 @@ public class WolfBehaviour : MonoBehaviour {
 		pursuing = false;
 		anim = GetComponent<Animator> ();
 		moving = false;
+		id = gameObject.GetInstanceID ();
 		StartCoroutine("StartTick", pingFrequency);
 	}
 
-	void FixedUpdate() {
+	void Update () {
 		float targetDistance = Vector2.Distance (transform.position, target.transform.position);
 
+		// Active check.
 		if (active && targetDistance > inactiveDistance) {
 			active = false;
-			wpsController.ReduceStrength (stats.GetPower());
+			wpsController.RemoveWolf (id);
 		} else if (!active && targetDistance <= activeDistance) {
 			active = true;
-			wpsController.IncreaseStrength (stats.GetPower());
-		}
-
-		if (!active && rb.velocity.sqrMagnitude > 0.1f) {
-			Vector2 newVelocity = rb.velocity;
-			newVelocity *= 0.1f;
-			rb.velocity = newVelocity;
-		} else if (!active) {
-			rb.velocity = Vector2.zero;
+			wpsController.AddWolf (id, stats.GetPower());
 		}
 
 		// Animation
@@ -78,6 +71,16 @@ public class WolfBehaviour : MonoBehaviour {
 		} else if (moving && rb.velocity.sqrMagnitude < 3f) {
 			moving = false;
 			anim.SetBool ("moving", false);
+		}
+	}
+
+	void FixedUpdate() {
+		if (!active && rb.velocity.sqrMagnitude > 0.1f && !pursuing) {
+			Vector2 newVelocity = rb.velocity;
+			newVelocity *= 0.1f;
+			rb.velocity = newVelocity;
+		} else if (!active && !pursuing) {
+			rb.velocity = Vector2.zero;
 		}
 	}
 
@@ -207,6 +210,10 @@ public class WolfBehaviour : MonoBehaviour {
 
 	void StopPursuing() {
 		pursuing = false;
+	}
+
+	public bool GetActive () {
+		return active;
 	}
 
 	float map(float value, float a1, float a2, float b1, float b2)
