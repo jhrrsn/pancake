@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		Debug.Log (rb.velocity.sqrMagnitude);
 		TestingLinesToCaves ();
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
