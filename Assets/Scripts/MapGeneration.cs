@@ -28,12 +28,6 @@ public class MapGeneration : MonoBehaviour {
 		InstantiateObjects ();
 	}
 
-	void Update() {
-		if (Input.GetMouseButtonDown (0)) {
-			Application.LoadLevel(Application.loadedLevel);
-		}
-	}
-
 	void PopulateGrid () {
 		for (int i = 0; i < grid; i++) {
 			for (int j = 0; j < grid; j++) {
@@ -55,7 +49,7 @@ public class MapGeneration : MonoBehaviour {
 			for (int j = 0; j < grid; j++) {
 				// Settlements
 				if (populatedGrid[i,j] == 1) {
-					int settlementSize = Random.Range(3, 8) * 10;
+					int settlementSize = Random.Range(1, 3) * 10;
 					int settlementRotation = Random.Range(0, 359);
 					Vector2 settlementPosition = new Vector2((i * gridDensity)-mapSize/2f, (j * gridDensity)-mapSize/2f);
 					float xOffset = Random.Range(-gridDensity/5f, gridDensity/5f);
@@ -68,12 +62,11 @@ public class MapGeneration : MonoBehaviour {
 					sGenr.BroadcastMessage("SetSettlementSize", settlementSize);
 					sGenr.BroadcastMessage("SpawnBuildings");
 				} else if (populatedGrid[i,j] == 2) {
-					Quaternion caveRotation = Quaternion.AngleAxis (Random.Range(0, 359), Vector3.forward);
 					Vector2 cavePosition = new Vector2((i * gridDensity)-mapSize/2f, (j * gridDensity)-mapSize/2f);
 					float xOffset = Random.Range(-gridDensity/2.5f, gridDensity/2.5f);
 					float yOffset = Random.Range(-gridDensity/2.5f, gridDensity/2.5f);
 					Vector2 caveOffset = new Vector2(xOffset, yOffset);
-					GameObject newCave = (GameObject) Instantiate (wolfCave, cavePosition + caveOffset, caveRotation);
+					GameObject newCave = (GameObject) Instantiate (wolfCave, cavePosition + caveOffset, Quaternion.identity);
 					newCave.transform.parent = map.transform;
 				}
 			}

@@ -42,4 +42,8 @@ public class WolfpackStrengthController : MonoBehaviour {
 
 		strengthText.text = wolfpackStrength.ToString ();
 	}
+
+	void Update () {
+		Debug.Log (wolfpackStrength);
+	}
 }

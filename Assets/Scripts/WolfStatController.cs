@@ -24,7 +24,7 @@ public class WolfStatController : MonoBehaviour {
 		id = gameObject.GetInstanceID ();
 		power = startingPower;
 		health = power;
-		float size = baseSize + 6f * (power / 100f);
+		float size = (baseSize + 6f * (power / 100f))/3f;
 		xp = 0;
 		nextBite = Time.time;
 		transform.localScale = new Vector2(size, size);
@@ -59,7 +59,7 @@ public class WolfStatController : MonoBehaviour {
 	void LevelUp () {
 		power += 1;
 		health += 1;
-		float size = baseSize + 6f * (power / 100f);
+		float size = (baseSize + 6f * (power / 100f))/3f;
 		transform.localScale = new Vector2(size, size);
 		wpsController.UpdateWolf (id, power);
 	}

@@ -41,16 +41,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadLength: 50
   buildingObjects:
-  - {fileID: 104824, guid: 6d78fa89c92664a91b225e68676b8fba, type: 2}
-  - {fileID: 165552, guid: f521a5750f67b4d0cac68f7af62ecce0, type: 2}
-  - {fileID: 100376, guid: 2002fad58658846b0982cadfa3c976cd, type: 2}
-  - {fileID: 105480, guid: 927ecf07f669148e4bd022e6d26443a6, type: 2}
-  - {fileID: 151338, guid: d5399381a5c5446418a872acaa315165, type: 2}
-  road: {fileID: 190956, guid: e04f321e85090448aabb6af17eddf6e9, type: 2}
-  buildingSizes: 0300000004000000050000000600000007000000
-  buildingSpacerSize: 0
-  buildingGapSize: 6
-  roadOffset: 2
+  - {fileID: 173344, guid: 59acde7f38766418190bb310c84d8b3c, type: 2}
+  - {fileID: 126732, guid: 5cb966a8be77f42a3822a645e1a4782f, type: 2}
+  - {fileID: 114768, guid: e215205c08574490f8505e9508e3385f, type: 2}
+  road: {fileID: 187710, guid: 473072d319bbf41428418eb1ed4679dd, type: 2}
+  villager: {fileID: 151556, guid: 42d91e7ef2232483e92287d27c673a76, type: 2}
+  marshall: {fileID: 137554, guid: be8362f361f554898bbbb17319c4fea4, type: 2}
+  marshallChance: .200000003
+  buildingSizes:
+  - .5
+  - 1
+  - 1.5
+  buildingSpacerSize: 1
+  buildingGapSize: 2
+  roadOffset: .5
   roadRotation: 0
   buildingDensity: 70
 --- !u!1001 &100100000
@@ -59,7 +63,47 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: roadOffset
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingSpacerSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingGapSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingSizes.Array.data[0]
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingSizes.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingSizes.Array.data[2]
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: buildingDensity
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: villager
+      value: 
+      objectReference: {fileID: 151556, guid: 42d91e7ef2232483e92287d27c673a76, type: 2}
+    - target: {fileID: 0}
+      propertyPath: marshall
+      value: 
+      objectReference: {fileID: 137554, guid: be8362f361f554898bbbb17319c4fea4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: marshallChance
+      value: .200000003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 107232}
