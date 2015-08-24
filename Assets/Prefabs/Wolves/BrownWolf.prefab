@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 406882}
   - 50: {fileID: 5033952}
   - 114: {fileID: 11456706}
-  - 58: {fileID: 5820658}
   - 114: {fileID: 11400638}
   - 212: {fileID: 21205248}
   - 95: {fileID: 9578164}
+  - 61: {fileID: 6149854}
   m_Layer: 11
   m_Name: BrownWolf
   m_TagString: wolf
@@ -27,7 +27,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140720}
-  m_LocalRotation: {x: 0, y: 0, z: -.30848217, w: -.951230168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
@@ -49,8 +49,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5820658
-CircleCollider2D:
+--- !u!61 &6149854
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -61,7 +61,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: .5
+  m_Size: {x: .25, y: .5}
 --- !u!95 &9578164
 Animator:
   serializedVersion: 3
@@ -93,6 +93,7 @@ MonoBehaviour:
   startingPower: 1
   biteDelay: .5
   baseSize: .5
+  power: 0
 --- !u!114 &11456706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8e4f54c3a7a4601bce88bad5ceb539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
+  maxSpeed: 8
   activeDistance: 8
   inactiveDistance: 20
   pingFrequency: .0500000007

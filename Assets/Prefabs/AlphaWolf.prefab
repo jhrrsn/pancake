@@ -8,12 +8,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 461312}
-  - 212: {fileID: 21205360}
   - 50: {fileID: 5021158}
   - 114: {fileID: 11462624}
   - 58: {fileID: 5877080}
   - 82: {fileID: 8236204}
   - 114: {fileID: 11436204}
+  - 212: {fileID: 21219464}
+  - 95: {fileID: 9501478}
   m_Layer: 11
   m_Name: AlphaWolf
   m_TagString: wolf
@@ -28,8 +29,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.63202286, y: -1.85280967, z: 0}
-  m_LocalScale: {x: .5, y: .699999988, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,7 +49,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5877080
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -59,9 +60,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -.0299999993}
   serializedVersion: 2
-  m_Radius: .5
+  m_Radius: .300000012
 --- !u!82 &8236204
 AudioSource:
   m_ObjectHideFlags: 1
@@ -131,6 +132,23 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!95 &9501478
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189162}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9578f783696d48048de1383ac6e9ee0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11436204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,7 +162,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fxSource: {fileID: 0}
   instance: {fileID: 0}
-  fxFrequency: 2000
+  fxList:
+  - {fileID: 8300000, guid: 6b64f6f6822a44085b47a3eb83cd7c71, type: 3}
+  - {fileID: 8300000, guid: 81fdab38e3bbd4e05b15a73c159889ed, type: 3}
+  - {fileID: 8300000, guid: ab2d5e14bb78847828ddf2bc6cce2265, type: 3}
+  - {fileID: 8300000, guid: b69569050442c4574887ee06d06906c8, type: 3}
+  howlList:
+  - {fileID: 8300000, guid: 7f1024a73084a4c5983a8e8b36d3cf2f, type: 3}
+  - {fileID: 8300000, guid: bda785db463524be1932c916353649e8, type: 3}
+  - {fileID: 8300000, guid: b535ce339f13a4edabde90c642cbf91e, type: 3}
+  fxDelay: 8
 --- !u!114 &11462624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,10 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f5d52b68cd7452291c588ebd2a6674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 12
+  moveForce: 6
   lerpSpeed: 5
-  mouseDeadzone: 1
---- !u!212 &21205360
+--- !u!212 &21219464
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -182,9 +208,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fb70b149db46043d1b1da550c4ee3fe1, type: 3}
-  m_Color: {r: .323529422, g: .321150541, b: .321150541, a: 1}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 020bf5ee1a456473b87935cc59bd8d47, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
